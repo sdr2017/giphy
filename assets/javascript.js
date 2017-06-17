@@ -56,17 +56,25 @@ $(document).ready(function(){
 				gifImage.attr("data-state", "still");
 				$("#gifs").prepend(paragraphRating);
 				$("#gifs").prepend(gifImage);
+				}
+				console.log("checkpoint1");
+		$(".printedGifs").on("click", function() {
+			var dataState = $(this).attr("data-state");
+			console.log(dataState);
+			
+			if (dataState === "still") {
+				var dataAnimate = $(this).attr("data-animate");
+				$(this).attr("src", dataAnimate);
+				$(this).attr("data-state", "animate");
+				}
+			else {
+				var dataStill = $(this).attr("data-still");
+				$(this).attr("src", dataStill);
+				$(this).attr("data-state", "still");
 			}
-	$(".printedGifs").on("click", function() {
-		var dataState = $(this).attr("data-state");
-		console.log(dataState);
 		
-		if (dataState === "still") {
-			$(this).attr("src", $(this.attr("data-animate")));
-			$(this).attr("data-state", "animate");
-			}
-		
-	});
+		});
+		console.log("chekpoint2");
 		});
 		});
 
