@@ -1,12 +1,11 @@
 $(document).ready(function(){
 
 	var giphyAPIKey = "dc6zaTOxFJmzC";
-	var giphyURL = "http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=" + giphyAPIKey;
 
 	var buttons = [
 		"nope",
 		"yes",
-		"excitement",
+		"cash me ousside",
 		"nerd",
 		"the office",
 		"fail",
@@ -16,13 +15,7 @@ $(document).ready(function(){
 		"mind blown",
 	];
 
-	$.ajax({
-        url: giphyURL,
-        method: "GET"
-      })
-	.done(function(response){
-		console.log(response);
-	})
+	
 
 	function printButtons() {
 		$(".buttonArray").empty();
@@ -35,14 +28,38 @@ $(document).ready(function(){
 			buttonFromArray.text(buttons[i]);
 			$("#buttons").append(buttonFromArray);
 			}
-	}
+			}
 	printButtons();
 
-	$("#buttons").on("click", function buttonClick() {
-		var giph = $(this).val();
-		console.log(giph);
+	$(".buttonArray").on("click", function() {
+		var giph = $(this).attr('value');
+		var giphyURL = 'http://api.giphy.com/v1/gifs/search?q=' + giph + '&limit=10&api_key=' + giphyAPIKey;
+
+		$.ajax({
+        url: giphyURL,
+        method: "GET"
+      	})
+		
+		.done(function(response){
+
+		var results = response.data;
+		console.log(results);
+		$("#gifs").empty();
+		for (var i = 0; i < results.length; i++) {
+			var rating = results[i].rating;
+			var paragraphRating = $('<p>').text("Rating: " + rating);
+			var gifImage = $("<img>");
+			gifImage.attr("src", results[i].images.fixed_height.url);
+			$("#gifs").prepend(paragraphRating);
+			$("#gifs").prepend(gifImage);
+			console.log(rating);
+
+		}
+	});
+
+		});
+
 	
-});
 
 
 
