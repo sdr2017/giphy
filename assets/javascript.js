@@ -78,7 +78,19 @@ $(document).ready(function(){
 		});
 		});
 
+// 	$("#add-giphy").on("click", function(event) {
+// 				$(".buttonArray").empty();
 
+//         event.preventDefault();
+//         // This line grabs the input from the textbox
+        
+//         buttons.push($("#giphyInput").val().trim());
+//         // Calling renderButtons which handles the processing of our movie array
+//         printButtons();
+
+//     });
+
+// console.log(buttons);
 
 	
 
