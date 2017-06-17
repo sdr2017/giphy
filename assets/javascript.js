@@ -13,7 +13,7 @@ $(document).ready(function(){
 		"baller",
 		"football",
 		"mind blown",
-	];
+		];
 
 	
 
@@ -42,22 +42,37 @@ $(document).ready(function(){
 		
 		.done(function(response){
 
-		var results = response.data;
-		console.log(results);
-		$("#gifs").empty();
-		for (var i = 0; i < results.length; i++) {
-			var rating = results[i].rating;
-			var paragraphRating = $('<p>').text("Rating: " + rating);
-			var gifImage = $("<img>");
-			gifImage.attr("src", results[i].images.fixed_height.url);
-			$("#gifs").prepend(paragraphRating);
-			$("#gifs").prepend(gifImage);
-			console.log(rating);
-
-		}
+			var results = response.data;
+			console.log(results);
+			$("#gifs").empty();
+			for (var i = 0; i < results.length; i++) {
+				var rating = results[i].rating;
+				var paragraphRating = $('<p>').text("Rating: " + rating);
+				var gifImage = $("<img>");
+				gifImage.attr("class", "printedGifs");
+				gifImage.attr("src", results[i].images.fixed_height_still.url);
+				gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+				gifImage.attr("data-animate", results[i].images.fixed_height.url)
+				gifImage.attr("data-state", "still");
+				$("#gifs").prepend(paragraphRating);
+				$("#gifs").prepend(gifImage);
+			}
+	$(".printedGifs").on("click", function() {
+		var dataState = $(this).attr("data-state");
+		console.log(dataState);
+		
+		if (dataState === "still") {
+			$(this).attr("src", $(this.attr("data-animate")));
+			$(this).attr("data-state", "animate");
+			}
+		
 	});
-
 		});
+		});
+
+
+
+	
 
 	
 
@@ -66,3 +81,5 @@ $(document).ready(function(){
 
 
 })
+
+
