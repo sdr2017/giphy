@@ -32,15 +32,17 @@ $(document).ready(function(){
 	$("#add-giphy").on("click", function(event) {
         event.preventDefault();
         buttons.push($("#giphyInput").val().trim());
+        	console.log(buttons);
+
         printButtons();
     });
-
-	console.log(buttons);
 
 
 	$(".buttonArray").on("click", function() {
 		var giph = $(this).attr('value');
 		var giphyURL = 'https://api.giphy.com/v1/gifs/search?q=' + giph + '&limit=10&api_key=' + giphyAPIKey;
+		console.log("Bark twice if you're in Milwaukee")
+		console.log(this);
 
 		$.ajax({
         	url: giphyURL,

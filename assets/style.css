@@ -1,3 +1,31 @@
 .buttonArray {
 	margin: 10px;
 }
+
+#giphyLogo {
+	text-align: center;
+	background-color: #000000;
+}
+
+#buttons {
+	text-align: center;
+	margin: 0px 0px 20px 0px;
+	padding: 20px;
+	border: #333333 solid 1px;
+	background-color: #eeeeee;
+}
+
+#add-giphy {
+	margin-top: 10px;
+}
+
+form {
+	width: 80%;
+	padding: 20px;
+	border: #333333 solid 1px;
+	background-color: #eeeeee;
+}
+
+#gifs {
+text-align: center;
+}
