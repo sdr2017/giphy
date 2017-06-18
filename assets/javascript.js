@@ -29,10 +29,18 @@ $(document).ready(function(){
 	}
 	printButtons();
 
+	$("#add-giphy").on("click", function(event) {
+        event.preventDefault();
+        buttons.push($("#giphyInput").val().trim());
+        printButtons();
+    });
+
+	console.log(buttons);
+
 
 	$(".buttonArray").on("click", function() {
 		var giph = $(this).attr('value');
-		var giphyURL = 'http://api.giphy.com/v1/gifs/search?q=' + giph + '&limit=10&api_key=' + giphyAPIKey;
+		var giphyURL = 'https://api.giphy.com/v1/gifs/search?q=' + giph + '&limit=10&api_key=' + giphyAPIKey;
 
 		$.ajax({
         	url: giphyURL,
@@ -80,13 +88,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#add-giphy").on("click", function(event) {
-        event.preventDefault();
-        buttons.push($("#giphyInput").val().trim());
-        printButtons();
-    });
 
-	console.log(buttons);
 
 	
 
