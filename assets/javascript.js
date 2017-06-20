@@ -14,7 +14,8 @@ $(document).ready(function(){
 		"football",
 		"mind blown",
 	];
-
+	
+	//adding buttons from the button Array to the HTML
 	function printButtons() {
 		$("#buttons").empty();
 
@@ -29,6 +30,7 @@ $(document).ready(function(){
 	}
 	printButtons();
 
+	//function to add extra buttons to the button array, and calling the function to print it to HTML
 	$("#add-giphy").on("click", function(event) {
         event.preventDefault();
         buttons.push($("#giphyInput").val().trim());
@@ -37,8 +39,8 @@ $(document).ready(function(){
         printButtons();
     });
 
-
-	$(".buttonArray").on("click", function() {
+	//function for printing gifs once button is clicked
+	$(document).on("click", ".buttonArray", function() {
 		var giph = $(this).attr('value');
 		var giphyURL = 'https://api.giphy.com/v1/gifs/search?q=' + giph + '&limit=10&api_key=' + giphyAPIKey;
 		console.log("Bark twice if you're in Milwaukee")
@@ -53,8 +55,10 @@ $(document).ready(function(){
 
 			var results = response.data;
 
+			//clear the gifs from previous click before adding the gifs from the next button
 			$("#gifs").empty();
 
+			//adding data to the gifs and prepending them to the HTML
 			for (var i = 0; i < results.length; i++) {
 				var rating = results[i].rating;
 				var paragraphRating = $('<p>').text("Rating: " + rating);
@@ -70,6 +74,7 @@ $(document).ready(function(){
 
 			console.log("checkpoint1");
 
+			//changing gif from still to animate and vice versa when clicked
 			$(".printedGifs").on("click", function() {
 				var dataState = $(this).attr("data-state");
 				console.log(dataState);
@@ -89,16 +94,6 @@ $(document).ready(function(){
 			console.log("chekpoint2");
 		});
 	});
-
-
-
-	
-
-	
-
-
-
-
 
 })
 
